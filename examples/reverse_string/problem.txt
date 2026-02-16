@@ -1,0 +1,31 @@
+# Reverse String
+
+Write a function that reverses a string.
+
+## Input
+- A string `s` (0 ≤ length ≤ 10,000)
+
+## Output
+- The string reversed
+
+## Examples
+
+Example 1:
+Input: s = "hello"
+Output: "olleh"
+
+Example 2:
+Input: s = "world"
+Output: "dlrow"
+
+Example 3:
+Input: s = ""
+Output: ""
+
+Example 4:
+Input: s = "a"
+Output: "a"
+
+## Constraints
+- The input string contains only ASCII characters
+- Your solution should work in O(n) time and O(1) extra space if possible

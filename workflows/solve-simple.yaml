@@ -1,0 +1,35 @@
+workflow:
+  name: solve-simple
+  description: "Simple 3-step workflow to solve coding problems using TDD"
+
+  steps:
+    - id: clarify
+      model: haiku
+      wrapper: claude_code
+      prompt_strategy: prompts/clarify_problem.md
+      outputs:
+        - context/clarified_problem.md
+      timeout: 180
+      max_turns: 10
+
+    - id: write_tests
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/write_tests.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - clarify
+      timeout: 240
+      max_turns: 10
+
+    - id: build_solution
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/build_tdd.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - write_tests
+      timeout: 300
+      max_turns: 15
