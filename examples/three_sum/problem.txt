@@ -1,0 +1,43 @@
+# Three Sum
+
+Find all unique triplets in an array that sum to zero.
+
+## Input
+- An array of integers `nums` (3 ≤ length ≤ 3,000)
+
+## Output
+- A list of unique triplets `[a, b, c]` where `a + b + c = 0`
+- Each triplet should be in sorted order
+- The result should not contain duplicate triplets
+
+## Assumptions
+- The same array element cannot be used more than once in a triplet
+- The order of triplets in the output does not matter
+
+## Examples
+
+Example 1:
+Input: nums = [-1, 0, 1, 2, -1, -4]
+Output: [[-1, -1, 2], [-1, 0, 1]]
+Explanation:
+  -1 + -1 + 2 = 0
+  -1 + 0 + 1 = 0
+
+Example 2:
+Input: nums = [0, 1, 1]
+Output: []
+Explanation: No three numbers sum to zero
+
+Example 3:
+Input: nums = [0, 0, 0]
+Output: [[0, 0, 0]]
+Explanation: The only triplet sums to zero
+
+Example 4:
+Input: nums = [-2, 0, 1, 1, 2]
+Output: [[-2, 0, 2], [-2, 1, 1]]
+
+## Constraints
+- -10^5 ≤ nums[i] ≤ 10^5
+- Naive O(n³) solution will work, but O(n²) is achievable
+- Consider sorting as a preprocessing step
