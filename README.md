@@ -25,8 +25,19 @@ Orchestrates Claude Code agents through multi-step workflows:
 4. **Review** - Identify quality issues and optimizations ⭐
 5. **Refine** - Apply feedback, optimize algorithm ⭐
 
+**Phase 3 - 9 steps (with performance analysis):**
+1. **Clarify** - Analyze problem → write specification
+2. **Write Tests** - Generate test suite (TDD)
+3. **Build Solution** - Implement code to pass tests
+4. **Review** - Identify quality issues and optimizations
+5. **Refine** - Apply feedback, optimize algorithm
+6. **Analyze Performance** - Analyze complexity, identify bottlenecks ⭐
+7. **Build Alternative** - Implement optimized algorithmic approach ⭐
+8. **Benchmark** - Measure actual performance of both approaches ⭐
+9. **Compare** - Synthesize analysis and recommend best approach ⭐
+
 **Input**: A problem description (e.g., "reverse a string", "three sum")
-**Output**: Working, reviewed, and optimized Python solution with tests
+**Output**: Working, reviewed, and optimized Python solution with tests, performance analysis, and multiple algorithmic approaches
 
 ## Quick Start
 
@@ -56,16 +67,27 @@ pdm run pipeline run --workflow workflows/test-mock.yaml --problem examples/reve
 pdm run pipeline run --workflow workflows/test-review-mock.yaml --problem examples/three_sum/problem.txt
 ```
 
-**Option 3: Production workflow - Phase 1 (requires Claude Code CLI)**
+**Option 3: Mock workflow - Phase 3 with performance analysis (fast, no API calls)**
+```bash
+pdm run pipeline run --workflow workflows/test-performance-mock.yaml --problem examples/three_sum/problem.txt
+```
+
+**Option 4: Production workflow - Phase 1 (requires Claude Code CLI)**
 ```bash
 # Run from outside Claude Code session
 pdm run pipeline run --workflow workflows/solve-simple.yaml --problem examples/reverse_string/problem.txt
 ```
 
-**Option 4: Production workflow - Phase 2 with review (requires Claude Code CLI)**
+**Option 5: Production workflow - Phase 2 with review (requires Claude Code CLI)**
 ```bash
 # Run from outside Claude Code session
 pdm run pipeline run --workflow workflows/solve-with-review.yaml --problem examples/three_sum/problem.txt
+```
+
+**Option 6: Production workflow - Phase 3 with performance analysis (requires Claude Code CLI)**
+```bash
+# Run from outside Claude Code session
+pdm run pipeline run --workflow workflows/solve-with-performance.yaml --problem examples/three_sum/problem.txt
 ```
 
 ### Other Commands

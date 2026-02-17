@@ -1,0 +1,101 @@
+workflow:
+  name: solve-with-performance
+  description: "9-step workflow with performance analysis and benchmarking (Phase 3)"
+
+  steps:
+    - id: clarify
+      model: haiku
+      wrapper: claude_code
+      prompt_strategy: prompts/clarify_problem.md
+      outputs:
+        - context/clarified_problem.md
+      timeout: 180
+      max_turns: 10
+
+    - id: write_tests
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/write_tests.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - clarify
+      timeout: 240
+      max_turns: 10
+
+    - id: build_solution
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/build_tdd.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - write_tests
+      timeout: 300
+      max_turns: 15
+
+    - id: review
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/review_code.md
+      outputs:
+        - context/review_notes.md
+      depends_on:
+        - build_solution
+      timeout: 240
+      max_turns: 10
+
+    - id: refine
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/refine_solution.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - review
+      timeout: 300
+      max_turns: 15
+
+    - id: analyze_performance
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/analyze_performance.md
+      outputs:
+        - context/performance_analysis.md
+      depends_on:
+        - refine
+      timeout: 240
+      max_turns: 10
+
+    - id: build_alternative
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/build_alternative.md
+      outputs:
+        - project/solution.py
+      depends_on:
+        - analyze_performance
+      timeout: 360
+      max_turns: 20
+
+    - id: benchmark
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/benchmark_solutions.md
+      outputs:
+        - context/benchmark_results.md
+      depends_on:
+        - build_alternative
+      timeout: 300
+      max_turns: 15
+
+    - id: compare
+      model: sonnet
+      wrapper: claude_code
+      prompt_strategy: prompts/compare_approaches.md
+      outputs:
+        - context/comparison_report.md
+      depends_on:
+        - benchmark
+      timeout: 240
+      max_turns: 10
