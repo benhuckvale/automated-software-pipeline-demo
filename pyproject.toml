@@ -3,7 +3,7 @@ name = "automated-pipeline"
 version = "0.1.0"
 description = "Automated software delivery pipeline using AI-driven workflow orchestration"
 authors = [
-    {name = "Ben", email = "ben@example.com"},
+    {name = "Ben", email = "ben@huckvale.dev"},
 ]
 dependencies = [
     "pydantic>=2.0.0",
